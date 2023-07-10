@@ -29,7 +29,7 @@ header{
     font-family: var(--main-font);
     color: white;
     font-size: 2em;
-    background-color: rgba(255, 0, 0, 0.205);
+    background-color: rgba(141, 4, 4, 0.514);
     height: 100%;
     width: 100%;
 }
@@ -42,12 +42,18 @@ header{
     text-align: center;   
 }
 
+.cv-header h3{
+    font-weight: 400;
+    font-size: 1em;
+}
+
 .values{
     display: flex;
     gap:0.5em;
     margin-top: 0.5em;
 }
 .value{
+    cursor: pointer;
     width: 200px;
     height: 100px;
     background-color: rgb(148, 0, 0);
@@ -56,8 +62,56 @@ header{
     justify-content: center;
     align-items: center;
     font-size: 80px;
+    border: none;
+    color: white;
+    font-family: var(--main-font);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.205);
+}
+.value:hover{
+    background-color: rgb(49, 49, 49);
+}
+.value:active{
+    background-color: rgb(49, 49, 49);
 }
 
+.cv-input{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    font-family: var(--main-font);
+}
+.cv-input label{
+    margin-bottom: 0.5rem;
+}
+.name-input{
+    font-size: 16px;
+    margin-bottom: 0.5rem;
+    border: none;
+    height: 30px;
+    border-radius: 0.5rem;
+    padding: 5px 1rem;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.205);
+}
+
+.name-input:focus{
+    appearance: none;
+    border: none;
+    outline: none;
+}
+.cv-input button {
+    cursor: pointer;
+    border: none;
+    height: 2em;
+    font-size: 20px;
+    border-radius: 0.5rem;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.205);
+    font-family: var(--main-font);
+    font-size: 1.5rem;    
+}
+.cv-input button:hover {
+    background-color: rgb(68, 68, 68);
+    color: white;
+}
 .player-modal.inactive{
     display: none;
 }
@@ -88,18 +142,26 @@ header{
     transform: translate(-50%, -50%);
 } 
 
-.gameboard{
+.game-board{
     display: grid;
     grid-template-columns: repeat(3, 150px);
     grid-template-rows: repeat(3, 150px);
     place-content: center;
     gap: 0.5em;
 }
-
-.gameboard .inactive{
+.turn{
+    font-family: var(--main-font);
+    font-size: 50px;
+    color: rgb(139, 31, 31);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.game-board .inactive{
     display: none;
 }
-.gameboard .block{
+.game-board .block{
+    border: none;
     font-family: var(--main-font);
     font-size: 80px;
     background-color: rgb(248, 248, 248);

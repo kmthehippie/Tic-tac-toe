@@ -5,26 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="app.js"></script>
+    <script src="app.js" defer></script>
 </head>
 <body>
     <div class="main-container">
         <header>
-            <h1>Tic Tac Toe</h1>
+            <h1>tic tac toe</h1>
             <!-- VIBE: SEXY KISSES AND X VIBE  -->
         </header>
 
-        <div class="player-modal inactive">
+        <div class="player-modal">
             <!-- choose what value they want x or o -->
             <div class="choose-value">
-                <div class="cv-header">
-                    <h3>Choose your sign</h3>
-                </div>
-                
-                <div class="values">
-                <div class="x value">X</div>
-                <div class="o value">O</div>
-                </div>
+                              
+                    <form>
+                        <div class="cv-input">
+                        <label for="name">Enter your Name</label>
+                        <input type="text" 
+                        name="name" 
+                        class="name-input" 
+                        id="name" 
+                        placeholder="John Doe"
+                        autocomplete="on"
+                        required />
+                        <!-- <button type="submit" value="Submit">Submit</button> -->
+                        </div>      
+                        <div class="cv-header">
+                        <h3>Choose your sign</h3>
+                        </div>
+                        <div class="values">
+                        <button class="x value">X</button>
+                        <button class="o value">O</button>
+                        </div>
+                        <!-- <button class = "start-game">Start Game</button>                  -->
+                    </form>
             </div>
             <!-- play vs what mode for the pc -->
             <!-- but for now -- put vs Player Two -->
@@ -43,29 +57,13 @@
             </div>
         </div>
         </div>
-
-        <div class="gameboard">
+        <div class="turn"></div>
+        
+        <div class="game-board">
             <!-- this is the board where x and o are placed -->
-            <div class="top-left block">
-                <p>X</p>          
-            </div>
-            <div class="top-mid block">  
-                <p>O</p>           
-            </div>
-            <div class="top-right block">            
-            </div>
-            <div class="mid-left block">            
-            </div>
-            <div class="mid-mid block">            
-            </div>
-            <div class="mid-right block">            
-            </div>
-            <div class="btm-left block">            
-            </div>
-            <div class="btm-mid block">            
-            </div>
-            <div class="btm-right block">            
-            </div>
+            <!-- <button class="block">X</button>
+            <button class="block">O</button> -->
+            
         </div>
 
         <div class="footer">
