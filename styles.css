@@ -52,26 +52,69 @@ header{
     gap:0.5em;
     margin-top: 0.5em;
 }
-.value{
-    cursor: pointer;
+
+.input-container{
+    position: relative;
     width: 200px;
     height: 100px;
-    background-color: rgb(148, 0, 0);
-    border-radius: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+.input-container input{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    margin: 0;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    opacity: 0;
+}
+
+.input-container label{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
     font-size: 80px;
-    border: none;
     color: white;
     font-family: var(--main-font);
+    background-color: rgb(48,48,48);
+    border-radius: 1.5rem;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.205);
 }
-.value:hover{
-    background-color: rgb(49, 49, 49);
+
+input:checked+label{
+    background-color: rgb(148, 0, 0);
+    border: 3px solid white;
+    color: white;
+    font-weight: 700;
+    box-shadow: 0px 0px 30px rgb(255, 255, 255);
 }
-.value:active{
-    background-color: rgb(49, 49, 49);
+input:hover+label{
+    background-color: rgb(240, 110, 110);
+    transition: 0.3s;
+}
+
+.start-game{
+    border:  none;
+    font-size: 28px;
+    font-family: var(--main-font);
+    margin-top: 1em;
+    background-color: white;
+    width: 100%;
+    height: 3rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    
+}
+
+button:hover{
+    transition: 0.3s;
+    background-color:rgb(148, 0, 0);;
+    color: white;
 }
 
 .cv-input{
@@ -126,7 +169,7 @@ header{
     left: 0;
     color: rgb(148, 0, 0);
     font-family: var(--main-font);
-    font-size: 2.5em;
+    font-size: 1.5rem;
     transition: 0.4s;
 }
 
@@ -136,11 +179,36 @@ header{
 }
 
 .fight-container{
+    background-color: black;
+    width: 50vw;
+    height: 50vh;
+    border-radius: 1rem;
     position: absolute;
-    top:25%;
+    top:50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 } 
+
+.fight-container button{
+    margin-top: 2rem;
+    cursor: pointer;
+    border: none;
+    height: 2em;
+    font-size: 20px;
+    width: 80%;
+    border-radius: 0.5rem;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.205);
+    font-family: var(--main-font);
+    font-size: 1.5rem; 
+}
+.fight-container button:hover {
+    background-color: rgb(68, 68, 68);
+    color: white;
+}
 
 .game-board{
     display: grid;

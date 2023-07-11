@@ -34,10 +34,26 @@
                         <h3>Choose your sign</h3>
                         </div>
                         <div class="values">
-                        <button class="x value">X</button>
-                        <button class="o value">O</button>
+                            <div class="input-container">
+                                <input 
+                                type="radio" 
+                                id="X"
+                                name="xoro" 
+                                value="X">
+                                <label 
+                                id="labelX" 
+                                for="X" >X</label>        
+                            </div>
+                            <div class="input-container">
+                                <input 
+                                type="radio" 
+                                id="O"
+                                name="xoro"
+                                value="O" >
+                                <label id="labelO" for="O">O</label>
+                            </div>                      
                         </div>
-                        <!-- <button class = "start-game">Start Game</button>                  -->
+                        <button class = "start-game">Start Game</button>                 
                     </form>
             </div>
             <!-- play vs what mode for the pc -->
@@ -46,16 +62,12 @@
 
         <div class="fight-modal inactive">
             <div class="fight-container">
-            <div class="player">
-                <!-- insert player image and value -->
+                <h1>GAME OVER!</h1>
+                <div class="result">
+                    <!-- Info about who won -->
+                </div>
+                <button class="again">Play Again?</button>
             </div>
-            <h1>FIGHT!</h1>
-            <div class="pc">
-                <!-- insert second player image and value -->
-                <!-- if not player then for NPC -- what is the difficulty level -->
-                <!-- need transition for this part as well -->
-            </div>
-        </div>
         </div>
         <div class="turn"></div>
         
