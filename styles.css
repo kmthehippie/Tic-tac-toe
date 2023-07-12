@@ -17,10 +17,15 @@
 
 header{
     font-family: var(--cursive-font);
-    font-size: 30px;
     text-align: center;
     color: rgb(148, 0, 0);
 }
+
+header h1{
+  padding-top: 25px;
+  font-size: 3.8rem;
+}
+
 .player-modal{
     position: absolute;
     top:0;
@@ -102,7 +107,6 @@ input:hover+label{
     border:  none;
     font-size: 28px;
     font-family: var(--main-font);
-    margin-top: 1em;
     background-color: white;
     width: 100%;
     height: 3rem;
@@ -209,6 +213,11 @@ button:hover{
     background-color: rgb(68, 68, 68);
     color: white;
 }
+/* block off the text area */
+.text-area{
+    margin-top: -30px;
+    height: 90px;
+}
 
 .game-board{
     display: grid;
@@ -217,6 +226,8 @@ button:hover{
     place-content: center;
     gap: 0.5em;
 }
+
+
 .turn{
     font-family: var(--main-font);
     font-size: 50px;
@@ -224,6 +235,27 @@ button:hover{
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.3s;
+}
+.restart-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.restart-div.inactive{
+    display: none;
+}
+.restart{
+    border:  none;
+    font-size: 28px;
+    font-family: var(--main-font);
+    margin-top: 1em;
+    background-color: white;
+    width: 300px;
+    height: 3rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    margin: 1rem;
 }
 .game-board .inactive{
     display: none;

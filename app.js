@@ -1,7 +1,4 @@
 // generate gameboard first
-
-
-
 const Gameboard = function(){
     const row = 3;
     const column = 3;
@@ -23,7 +20,7 @@ const Gameboard = function(){
     const block = document.querySelectorAll(".block");
     return { getBoard, block}   
 };
-
+//get playerinputs
 const PlayerInput = function(){
     const playerOne = document.querySelector(".name-input");
     const playerChoice = document.querySelectorAll('input[type="radio"]');
@@ -34,6 +31,7 @@ const PlayerInput = function(){
     let playerTwoName = "NPC";
     let playerOneChoice;
     let playerTwoChoice;
+
     function Players(name,token){
         name:name;
         token:token;
@@ -42,28 +40,36 @@ const PlayerInput = function(){
         }
     }
     let players = [];
-    submitButton.addEventListener("click", (e)=>{
-        e.preventDefault();
-        if(playerOne.value !== ""){
-            playerModal.classList.add("inactive");
-        }
-        playerOneName = playerOne.value;
-        playerChoice[0].checked === true ? playerOneChoice = "X" : playerOneChoice = "O";
-        playerOneChoice === "X" ? playerTwoChoice = "O" : playerTwoChoice = "X"; 
-        let playerOneInput = Players(playerOneName, playerOneChoice)
-        let playerTwoInput = Players(playerTwoName, playerTwoChoice)
-        players.push(playerOneInput);
-        players.push(playerTwoInput);
-    })   
+
+    let playerOneData = sessionStorage.getItem("playerOneData");
+
+    if(playerOneData !== null){
+        playerModal.classList.add("inactive")
+        playerOneData = JSON.parse(playerOneData)
+        players = playerOneData;
+    } else if (playerOneData === null){   
+        submitButton.addEventListener("click", (e)=>{
+            e.preventDefault();
+            if(playerOne.value !== ""){
+                playerModal.classList.add("inactive");
+            }
+            playerOneName = playerOne.value;
+            playerChoice[0].checked === true ? playerOneChoice = "X" : playerOneChoice = "O";
+            playerOneChoice === "X" ? playerTwoChoice = "O" : playerTwoChoice = "X"; 
+            let playerOneInput = Players(playerOneName, playerOneChoice)
+            let playerTwoInput = Players(playerTwoName, playerTwoChoice)
+            players.push(playerOneInput);
+            players.push(playerTwoInput);
+            sessionStorage.setItem("playerOneData",JSON.stringify(players));
+        })   
+    }
 
     return{
         players
     }
 
 };
-
-
-
+// run the game 
 const GameController = function(){      
     let board = Gameboard();
     let block = board.block;
@@ -71,6 +77,7 @@ const GameController = function(){
 
     const turnText = document.querySelector(".turn");
     const submitButton = document.querySelector(".start-game");
+    const restartDiv = document.querySelector(".restart-div");
 
     
     let players = [];
@@ -78,6 +85,7 @@ const GameController = function(){
 
     let activePlayer;; 
 
+    //start game from player-modal
     submitButton.addEventListener("click", (e)=>{
         e.preventDefault();
         const temp = Object.entries(playersInput);
@@ -86,6 +94,17 @@ const GameController = function(){
         activePlayer = players[0];
         playRound();
     })
+    //restart game from main page
+    let restartBtn = document.querySelector(".restart");
+    restartBtn.addEventListener("click", ()=>{       
+        const temp = Object.entries(playersInput);
+        players.push(temp[0][1][0]);
+        players.push(temp[0][1][1]);
+        activePlayer = players[0];
+        restartDiv.classList.add("inactive");
+        playRound();
+
+    })
     
     const switchPlayerTurn = () => {
         activePlayer = activePlayer === players[0] ? players[1] : players[0];
@@ -93,11 +112,13 @@ const GameController = function(){
     const printNewRound = () => {
         turnText.textContent = `${activePlayer.name}'s turn`;
     }; 
+    //playing a round
     const playRound = () =>{    
 //for every button,
         for (let i = 0; i <block.length; i++){
 //Listen for clicks on the block           
-            block[i].addEventListener("click", function(){              
+            block[i].addEventListener("click", function(){ 
+                
 //This is to prevent someone to click same button twice
                 if (block[i].textContent !== ""){
                     console.log("Error");
@@ -111,14 +132,20 @@ const GameController = function(){
                 WinningConditions(activePlayer);
                 switchPlayerTurn();
                 printNewRound();
-                
-                
+
+                const fightModal = document.querySelector(".fight-modal");
+                if(fightModal.classList.contains("inactive")){
+                    npcChoice(activePlayer, boardArray, block, board);
+                    WinningConditions(activePlayer);
+                    switchPlayerTurn();
+                    printNewRound();
+                }                
             })
         }
     }
 
 }
-
+// set the winning conditions
 const WinningConditions = function(activePlayer){
     const block = document.querySelectorAll(".block");
     const fightModal = document.querySelector(".fight-modal");
@@ -144,9 +171,8 @@ for (let i = 0; i < winningPositions.length; i ++){
     block[wpThree].textContent === "X"){
         fightModal.classList.remove("inactive");
         console.log("X WIN");
-
+        console.log(activePlayer.name);
         activePlayer.name !== "NPC" ? result.textContent = `Congratulations! You Win!` : result.textContent = `Sorry You Lose!`
-
         console.log(activePlayer);
         GameEnd();
         return
@@ -154,9 +180,10 @@ for (let i = 0; i < winningPositions.length; i ++){
     block[wpTwo].textContent === "O" &&
     block[wpThree].textContent === "O"){
         fightModal.classList.remove("inactive");
-        activePlayer.name !== "NPC" ? result.textContent = `Congratulations! You Win!` : `Sorry You Lose!`
+        console.log(activePlayer.name);
+        activePlayer.name !== "NPC" ? result.textContent = `Congratulations! You Win!` : result.textContent = `Sorry You Lose!`
         console.log("O WIN");
-        console.log(activePlayer);
+        console.log(activePlayer.name);
         GameEnd();
         return
     } else if (block[0].textContent !== "" && 
@@ -180,15 +207,38 @@ for (let i = 0; i < winningPositions.length; i ++){
 
 
 }
-
-
+// Random computer move
+const npcChoice = function(activePlayer, boardArray, block, board){
+    if (activePlayer.name === "NPC") {
+        let npcSelect = Math.floor(Math.random()*9);
+        console.log(npcSelect);
+        if (boardArray[npcSelect] === undefined){   
+            block[npcSelect].textContent = activePlayer.token;
+            board[npcSelect] = activePlayer.token;
+            boardArray[npcSelect] = activePlayer.token;
+        } else if (
+                boardArray[0] !== undefined &&
+                boardArray[1] !== undefined &&
+                boardArray[2] !== undefined &&
+                boardArray[3] !== undefined &&
+                boardArray[4] !== undefined &&
+                boardArray[5] !== undefined &&
+                boardArray[6] !== undefined &&
+                boardArray[7] !== undefined &&
+                boardArray[8] !== undefined  
+                ){
+                return;
+        } else {
+            npcChoice(activePlayer, boardArray, block, board);
+        }
+    }
+}
+       
 GameController();
-
-//!+ not done yet
+// end the game by refreshing page
 function GameEnd (){
     const playAgain = document.querySelector(".again");
     playAgain.addEventListener("click",()=>{
-        console.log("Need to fix this part");
         window.location.reload();
     })
 }
