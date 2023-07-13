@@ -53,6 +53,30 @@
                                 <label id="labelO" for="O">O</label>
                             </div>                      
                         </div>
+                        <div class="cv-header">
+                            <h3>Choose difficulty</h3>
+                        </div>
+                        <div class="values">
+                            <div class="input-container">
+                                <input 
+                                type="radio" 
+                                id="easy"
+                                name="npcmode" 
+                                value="easy">
+                                <label 
+                                id="easy-label" 
+                                for="easy" >Easy</label>        
+                            </div>
+                            <div class="input-container">
+                                <input 
+                                type="radio" 
+                                id="hard"
+                                name="npcmode"
+                                value="hard" >
+                                <label id="hard-label" 
+                                for="hard">Hard</label>
+                            </div>                      
+                        </div>
                         <button class = "start-game">Start Game</button>                 
                     </form>
             </div>
@@ -66,11 +90,35 @@
                 <div class="result">
                     <!-- Info about who won -->
                 </div>
+                
                 <button class="again">Play Again?</button>
             </div>
         </div>
-        <div class="text-area">
+        <div class="text-area inactive">
             <div class="turn"></div>
+            <div class="difficulty inactive">
+                <div class="values">
+                    <div class="input-container">
+                        <input 
+                        type="radio" 
+                        id="easy"
+                        name="npcmode" 
+                        value="easy" required/>
+                        <label 
+                        id="easy-label" 
+                        for="easy" >Easy</label>        
+                    </div>
+                    <div class="input-container">
+                        <input 
+                        type="radio" 
+                        id="hard"
+                        name="npcmode"
+                        value="hard" required/>
+                        <label id="hard-label" 
+                        for="hard">Hard</label>
+                    </div>                      
+                </div>
+            </div>
             <div class="restart-div">
                 <button class = "restart">Start Game</button>
             </div>
@@ -85,7 +133,8 @@
         </div>
 
         <div class="footer">
-            <p><a href="https://www.pexels.com/photo/white-and-black-wooden-board-963278/">Photo by David Bartus from Pexels:</a></p>
+            <p>Made by KM</p>
+            <p><a href="https://www.pexels.com/photo/white-and-black-wooden-board-963278/">Photo by David Bartus from Pexels</a></p>
         </div>
     </div>
 </body>

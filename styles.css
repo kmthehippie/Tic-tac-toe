@@ -34,7 +34,7 @@ header h1{
     font-family: var(--main-font);
     color: white;
     font-size: 2em;
-    background-color: rgba(141, 4, 4, 0.514);
+    background-color: rgba(141, 4, 4, 0.603);
     height: 100%;
     width: 100%;
 }
@@ -42,7 +42,7 @@ header h1{
 .choose-value{
     position: absolute;
     left: 50%;
-    top: 25%;
+    top: 10%;
     transform: translateX(-50%);
     text-align: center;   
 }
@@ -60,8 +60,8 @@ header h1{
 
 .input-container{
     position: relative;
-    width: 200px;
-    height: 100px;
+    width: 150px;
+    height: 70px;
 }
 
 .input-container input{
@@ -83,7 +83,7 @@ header h1{
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
-    font-size: 80px;
+    font-size: 50px;
     color: white;
     font-family: var(--main-font);
     background-color: rgb(48,48,48);
@@ -98,10 +98,12 @@ input:checked+label{
     font-weight: 700;
     box-shadow: 0px 0px 30px rgb(255, 255, 255);
 }
+
 input:hover+label{
     background-color: rgb(240, 110, 110);
     transition: 0.3s;
 }
+
 
 .start-game{
     border:  none;
@@ -112,7 +114,7 @@ input:hover+label{
     height: 3rem;
     border-radius: 1rem;
     cursor: pointer;
-    
+    margin-top: 1em;
 }
 
 button:hover{
@@ -165,7 +167,7 @@ button:hover{
 
 .fight-modal{
     background-color: rgba(0, 0, 0, 0.205);
-    z-index: 1;
+    z-index: 2;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -216,8 +218,35 @@ button:hover{
 /* block off the text area */
 .text-area{
     margin-top: -30px;
-    height: 90px;
+    height: 140px;
 }
+
+.text-area .difficulty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+}
+
+.difficulty.inactive{
+    display: none;
+}
+
+.text-area.inactive{
+    height: 100px;
+}
+.text-area .input-container{
+    width: 100px;
+    height: 50px;
+
+}
+.text-area label{
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .game-board{
     display: grid;
@@ -235,7 +264,6 @@ button:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.3s;
 }
 .restart-div{
     display: flex;
@@ -274,13 +302,17 @@ button:hover{
     justify-content: center;
     align-items: center;
 }
-
-
-.footer a{
-    text-decoration: none;
-    color: rgb(139, 31, 31);
+.footer{
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+    text-align: center;
+}
+.footer p{
+    color: rgb(139, 31, 31);
+}
+.footer a{
+    text-decoration: none;
+    color: rgb(139, 31, 31);   
 }
