@@ -37,6 +37,7 @@ header h1{
     background-color: rgba(141, 4, 4, 0.603);
     height: 100%;
     width: 100%;
+    z-index: 2;
 }
 
 .choose-value{
@@ -225,7 +226,6 @@ button:hover{
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 0;
 }
 
 .difficulty.inactive{
@@ -238,7 +238,6 @@ button:hover{
 .text-area .input-container{
     width: 100px;
     height: 50px;
-
 }
 .text-area label{
     font-size: 30px;
