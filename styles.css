@@ -43,7 +43,7 @@ header h1{
 .choose-value{
     position: absolute;
     left: 50%;
-    top: 10%;
+    top: 20%;
     transform: translateX(-50%);
     text-align: center;   
 }
@@ -73,7 +73,7 @@ header h1{
     margin: 0;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 5;
     opacity: 0;
 }
 
@@ -141,6 +141,7 @@ button:hover{
     border-radius: 0.5rem;
     padding: 5px 1rem;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.205);
+    z-index: 5;
 }
 
 .name-input:focus{
@@ -222,10 +223,11 @@ button:hover{
     height: 140px;
 }
 
-.text-area .difficulty{
+.difficulty{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 0;
 }
 
 .difficulty.inactive{
@@ -235,6 +237,8 @@ button:hover{
 .text-area.inactive{
     height: 100px;
 }
+
+
 .text-area .input-container{
     width: 100px;
     height: 50px;

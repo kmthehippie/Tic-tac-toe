@@ -107,6 +107,7 @@ const GameController = function(){
         players.push(temp[0][1][1]);
         activePlayer = players[0];
         restartDiv.classList.add("inactive");
+        difficulty.classList.add("inactive");
         ai = players[1].token;
         human = players[0].token;
         npcDifficulty = [];
